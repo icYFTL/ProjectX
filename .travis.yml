@@ -3,7 +3,7 @@ node_js:
   - node
 cache: npm
 before_deploy:
-  - cd front
+  - cd frontend
 script:
   - npm run build
   - npm run deploy
