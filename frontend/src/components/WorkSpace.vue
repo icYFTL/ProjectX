@@ -1,16 +1,22 @@
 <template>
     <div class="workspace">
         <TopBar class="top-bar"></TopBar>
-        <Menu class="menu"></Menu>
+        <div class="content">
+        <Menu class="menu-content"></Menu>
+        <ModuleView class="module-view">
+        </ModuleView>
+        </div>
     </div>
 </template>
 
 <script>
     import TopBar from "./workspace-src/TopBar";
     import Menu from "./workspace-src/Menu";
+    import ModuleView from "./workspace-src/ModuleView";
+
     export default {
         name: "WorkSpace",
-        components: {Menu, TopBar}
+        components: {ModuleView, Menu, TopBar}
     }
 </script>
 
@@ -23,9 +29,18 @@
         position: sticky;
         margin-top: -4.5%;
     }
-    .menu {
-        display: flex;
-        flex-flow: row;
-        justify-content: flex-start;
+    .menu-content {
+        justify-self: flex-start;
     }
+
+    .content {
+        display: flex;
+        flex-flow: row nowrap;
+    }
+    .module-view {
+        justify-self: flex-end;
+        height: 93.9vh;
+        width: 300vh;
+    }
+
 </style>
