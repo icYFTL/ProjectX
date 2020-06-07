@@ -1,5 +1,5 @@
 import Router from 'vue-router'
-import store from './store.js'
+//import store from './store.js'
 import Login from './components/Login'
 import WorkSpace from "./components/WorkSpace";
 
@@ -13,7 +13,7 @@ let router = new Router({
             name: 'app',
             component: WorkSpace,
             meta: {
-                requiresAuth: false
+                requiresAuth: true
             }
         },
         {
@@ -26,10 +26,10 @@ let router = new Router({
 
 router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth))
-        if (store.getters.isLoggedIn)
+        //if(store.getters.isLoggedIn)
             next()
-        else
-            next('/login')
+        //else
+            //next('/login')
     else
         next()
 

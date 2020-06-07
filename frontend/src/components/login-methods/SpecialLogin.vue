@@ -33,6 +33,7 @@
         methods: {
             auth: function () {
                 this.$router.push('/');
+
                 // this.$store.dispatch('login', {
                 //     'login': this.login,
                 //     'password': this.password
