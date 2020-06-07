@@ -1,39 +1,42 @@
 <template>
 
-
-    <div class="institute-login-form">
-        <div class="form-group" v-on:click="get_institutes">
-            <model-select ref="select"
-                          :options="inst_options"
-                          v-model="institute"
-                          placeholder="Institute"
-            >
-            </model-select>
+    <div class="col-md-6 col-sm-12">
+        <div class="institute-login-form">
+            <form @submit.prevent="auth">
+                <div class="form-group" v-on:click="get_institutes">
+                    <model-select required ref="select"
+                                  :options="inst_options"
+                                  v-model="institute"
+                                  placeholder="Institute"
+                    >
+                    </model-select>
+                </div>
+                <div class="form-group">
+                    <model-select required ref="select"
+                                  :options="group_options"
+                                  v-model="group"
+                                  placeholder="Group">
+                    </model-select>
+                </div>
+                <div class="form-group">
+                    <model-select required ref="select"
+                                  :options="snp_options"
+                                  v-model="snp"
+                                  placeholder="Surname Name Patronymic">
+                    </model-select>
+                </div>
+                <div class="form-group">
+                    <input type="password" required class="form-control" placeholder="Password" v-model="password">
+                </div>
+                <div class="form-group">
+                    <label class="form-control">
+                        <input type="checkbox" id="save" v-model="save_checked"/>
+                        Сохранить пароль?
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-black">Login</button>
+            </form>
         </div>
-        <div class="form-group">
-            <model-select ref="select"
-                          :options="group_options"
-                          v-model="group"
-                          placeholder="Group">
-            </model-select>
-        </div>
-        <div class="form-group">
-            <model-select ref="select"
-                          :options="snp_options"
-                          v-model="snp"
-                          placeholder="Surname Name Patronymic">
-            </model-select>
-        </div>
-        <div class="form-group">
-            <input type="password" class="form-control" placeholder="Password" v-model="password">
-        </div>
-        <div class="form-group">
-            <label class="form-control">
-                <input type="checkbox" id="save" v-model="save_checked"/>
-                Сохранить пароль?
-            </label>
-        </div>
-        <button type="submit" class="btn btn-black">Login</button>
     </div>
 
 
@@ -86,20 +89,33 @@
             {
                 get_institutes: async function () {
                     await WS.methods.sendMessage(JSON.stringify({'action': 'get_inst_list'}))
+                },
+                auth: async function () {
+                    // Non Implemented
+                    //return true;
+                    this.$store.dispatch('login', {
+                        'institute': this.institute,
+                        'group': this.group,
+                        'snp': this.snp,
+                        'password': this.password
+                    })
+                        .then(() => this.$router.push('/'))
+                        .catch(err => console.log(err))
                 }
+
             },
         async mounted() {
-            await WS.methods.connect();
-            await this.get_institutes();
+            //await WS.methods.connect();
+            //await this.get_institutes();
         }
     }
 </script>
 
 <style scoped>
-
     .btn-black {
         background-color: #000 !important;
         color: #fff !important;
         width: 50%;
     }
+
 </style>

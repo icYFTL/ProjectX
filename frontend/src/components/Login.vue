@@ -7,22 +7,17 @@
             </div>
         </div>
         <div class="main">
-            <div class="col-md-6">
-                <form>
-                    <div class="btn-group switcher" role="group">
-                        <button type="button" @click="is_institute_auth = true" class="btn btn-default"
-                                v-bind:class="{'btn_switcher-active': is_institute_auth}">Institute
-                        </button>
-                        <button type="button" @click="is_institute_auth = false" class="btn btn-default"
-                                v-bind:class="{'btn_switcher-active': !is_institute_auth}">Special
-                        </button>
-                    </div>
-                    <InstituteLogin v-if="is_institute_auth" :inst_options=inst_options :group_options=group_options
-                                    :snp_options=snp_options></InstituteLogin>
-                    <SpecialLogin v-if="!is_institute_auth"></SpecialLogin>
-
-                </form>
+            <div class="btn-group switcher" role="group">
+                <button type="button" @click="is_institute_auth = true" class="btn btn-default"
+                        v-bind:class="{'btn_switcher-active': is_institute_auth}">Institute
+                </button>
+                <button type="button" @click="is_institute_auth = false" class="btn btn-default"
+                        v-bind:class="{'btn_switcher-active': !is_institute_auth}">Special
+                </button>
             </div>
+            <InstituteLogin v-if="is_institute_auth" :inst_options=inst_options :group_options=group_options
+                            :snp_options=snp_options></InstituteLogin>
+            <SpecialLogin v-if="!is_institute_auth"></SpecialLogin>
         </div>
     </div>
 </template>
@@ -35,23 +30,20 @@
     export default {
         name: "Login",
         components: {SpecialLogin, InstituteLogin},
-        props: {
-            app_name: String,
-            login_page_description: String
-        },
         data() {
             return {
                 inst_options: ["None"],
                 group_options: ["None"],
                 snp_options: ["None"],
-                is_institute_auth: false
+                is_institute_auth: false,
+                app_name: "Project X",
+                login_page_description: "Make world better!"
 
             }
         },
         methods: {
-            change_auth_method: function () {
 
-            }
+
         }
 
     }
@@ -60,7 +52,7 @@
 </script>
 <style scoped>
     .switcher {
-        margin-top: 80%;
+        margin-top: 40%;
         margin-bottom: 5%;
     }
 

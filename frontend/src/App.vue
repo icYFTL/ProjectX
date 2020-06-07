@@ -1,18 +1,25 @@
 <template>
     <div id="app">
-        <Login login_page_description="We'll trying to make better world!" app_name="Project X"/>
+        <router-view>
+        </router-view>
     </div>
 </template>
 
 <script>
-    import Login from './components/Login.vue'
 
     export default {
         name: 'App',
         components: {
-            Login
         },
-
+        created: function () {
+            this.$http.interceptors.response.use(undefined, function (err) {
+                return new Promise(function () {
+                    if (err.status === 401)
+                        this.$store.dispatch("logout")
+                    throw err;
+                });
+            });
+        }
 
     }
 </script>

@@ -1,23 +1,23 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
 import App from './App.vue'
 import {BootstrapVue} from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import Vuex from 'vuex'
+import Axios from 'axios'
+import router from "./router";
+import Router from "vue-router";
 
 Vue.use(Vuex)
+Vue.use(Axios)
 Vue.use(BootstrapVue)
 Vue.config.productionTip = false
+Vue.use(Router)
 
-const NotFoundComponent = { template: '<div>BAD</div>' }
-
-const router = new VueRouter({
-    mode: 'history',
-    routes: [
-        { path: '*', component: NotFoundComponent }
-    ]
-});
+Vue.prototype.$http = Axios;
+const token = localStorage.getItem('token')
+if (token)
+    Vue.prototype.$http.defaults.headers.common['Authorization'] = token
 
 new Vue({
     render: h => h(App),
