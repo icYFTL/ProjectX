@@ -19,8 +19,9 @@ type App struct {
 }
 
 func (a *App) InitializeRoutes() {
-    a.Router.HandleFunc("/api/user",    a.register).Methods("POST")
-	a.Router.HandleFunc("/api/user/login", a.login).Methods("POST")
+    a.Router.HandleFunc("/api/user",        a.register).Methods("POST")
+	a.Router.HandleFunc("/api/user/login",  a.login).Methods("POST")
+	a.Router.HandleFunc("/api/user/logout", a.logout).Methods("GET")
 }
 
 func (a *App) Initialize(storeKey []byte, dbURL string) {
@@ -33,7 +34,8 @@ func (a *App) Initialize(storeKey []byte, dbURL string) {
     log.Printf("Connected to database.")
 
 	a.DB	 = pool
-    a.Store  = sessions.NewCookieStore(storeKey)
+    //a.Store  = sessions.NewCookieStore(storeKey)
+	a.Store  = sessions.NewFilesystemStore("", storeKey)
 	a.Router = mux.NewRouter()
 	a.Logger = handlers.CombinedLoggingHandler(os.Stdout, a.Router)
 	//a.Router.Use(a.authMiddleware)

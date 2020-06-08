@@ -7,6 +7,8 @@ import (
     pgx "github.com/jackc/pgx/v4"
 	"encoding/json"
 	"golang.org/x/crypto/bcrypt"
+
+	"log"
 )
 
 func (a *App) register(w http.ResponseWriter, r *http.Request) {
@@ -58,7 +60,11 @@ func (a *App) register(w http.ResponseWriter, r *http.Request) {
 
 
 func (a *App) login(w http.ResponseWriter, r *http.Request) {
-    session, _ := a.getSession(r)
+	session, err := a.getSession(r);
+	if err != nil {
+		http.Error(w, "Failed to get session", http.StatusInternalServerError)
+		return
+	}
 
     var creds User
 	decoder := json.NewDecoder(r.Body)
@@ -68,10 +74,11 @@ func (a *App) login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	result := a.DB.QueryRow(context.Background(),
-			"select password from users where username=$1", creds.Username)
+			"select id, password from users where username=$1", creds.Username)
 
 	var found_creds User
-	err := result.Scan(&found_creds.Password)
+	var user_id int
+	err = result.Scan(&user_id, &found_creds.Password)
 	if err != nil {
 		// If an entry with the username does not exist, send 401 status
 		if err == pgx.ErrNoRows {
@@ -91,7 +98,22 @@ func (a *App) login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Authorization successful
+    session.Values["user_id"] = user_id
     session.Values["auth"] = true
+    session.Save(r, w)
+    w.Write([]byte("success"))
+}
+
+func (a *App) logout(w http.ResponseWriter, r *http.Request) {
+	session, err := a.getSession(r);
+	if  err != nil || session.Values["auth"] != true {
+		http.Error(w, "Not authorized", http.StatusUnauthorized)
+		return
+	}
+	// unauthorization successful
+    //session.Values["user_id"] = 0
+    //session.Values["auth"] = false
+	session.Options.MaxAge = -1
     session.Save(r, w)
     w.Write([]byte("success"))
 }
