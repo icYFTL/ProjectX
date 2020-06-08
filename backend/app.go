@@ -4,16 +4,16 @@ import (
 	"github.com/gorilla/handlers"
     "github.com/gorilla/sessions"
 	"github.com/gorilla/mux"
-    //"github.com/jackc/pgx/v4" // PostgreSQL driver and toolkit
-    "database/sql"
-	"net/http"
+    "github.com/jackc/pgx/v4/pgxpool" // PostgreSQL driver and toolkit
+    "net/http"
+	"context"
 	"log"
 	"os"
 )
 
 type App struct {
 	Router *mux.Router
-	DB     *sql.DB
+	DB     *pgxpool.Pool
     Store  sessions.Store
 	Logger http.Handler
 }
@@ -23,9 +23,16 @@ func (a *App) InitializeRoutes() {
 	a.Router.HandleFunc("/api/user/login", a.login).Methods("POST")
 }
 
-func (a *App) Initialize(storeKey []byte) {
-	// TODO: connect to db
+func (a *App) Initialize(storeKey []byte, dbURL string) {
+    pool, err := pgxpool.Connect(context.Background(), dbURL)
+    if err != nil {
+        //fmt.Printf("pgerr: %v\n", err)
+        log.Fatalf("Unable to connect to database: %v\n", err)
+    }
+    // defer pool.Close()
+    log.Printf("Connected to database.")
 
+	a.DB	 = pool
     a.Store  = sessions.NewCookieStore(storeKey)
 	a.Router = mux.NewRouter()
 	a.Logger = handlers.CombinedLoggingHandler(os.Stdout, a.Router)
