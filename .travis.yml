@@ -4,7 +4,7 @@ node_js:
 cache: npm
 before_script:
   - nvm install node
-  - gimme stable
+  - gimme --force 1.14.2
 script:
   - cd frontend
   - npm install
