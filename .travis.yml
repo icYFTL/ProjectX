@@ -1,10 +1,14 @@
-language: node_js
+language: minimal
 node_js:
   - node
 cache: npm
 before_script:
-  - cd frontend
+  - nvm install node
 script:
+  - cd frontend
   - npm install
   - npm run build
+  - cd ../backend
+  - go build -o ../frontend/dist/backend_compiled
+  - cd ../frontend
   - npm run deploy

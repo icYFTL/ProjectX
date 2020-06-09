@@ -1,17 +1,28 @@
 <template>
     <div class="top-bar">
-        <span>Меню</span>
+        <div v-on:click="toggleMenuRef1.toggle_hide">
+            <b-icon icon="chevron-double-left"></b-icon>
+            <span>Меню</span>
+        </div>
     </div>
 </template>
 
 <script>
     export default {
-        name: "TopBar"
+        name: "TopBar",
+        props: {
+          toggleMenuRef: Object
+        },
+        data() {
+            return {
+                toggleMenuRef1: this.toggleMenuRef1 || Object
+            }
+        }
     }
 </script>
 
 <style scoped>
-    .top-bar{
+    .top-bar {
         min-height: 50px;
         background-color: #666666;
         font-size: medium;
@@ -20,13 +31,13 @@
         overflow: hidden;
     }
 
-    .top-bar span {
+    .top-bar div {
         float: left;
         color: #fff;
         text-align: center;
         padding: 14px 16px;
         text-decoration: none;
         font-size: 17px;
-        cursor: default;
+        cursor: pointer;
     }
 </style>

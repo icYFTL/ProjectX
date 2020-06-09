@@ -1,14 +1,14 @@
 package main
 
 import (
-    //"regexp"
+	//"regexp"
 	"context"
-	"net/http"
-    pgx "github.com/jackc/pgx/v4"
 	"encoding/json"
+	pgx "github.com/jackc/pgx/v4"
 	"golang.org/x/crypto/bcrypt"
+	"net/http"
 
-	"log"
+	//"log"
 )
 
 func (a *App) register(w http.ResponseWriter, r *http.Request) {

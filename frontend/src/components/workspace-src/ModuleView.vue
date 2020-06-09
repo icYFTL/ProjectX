@@ -1,6 +1,6 @@
 <template>
-    <div class="module-view" @mouseover="secret" @mouseleave="recover_secret">
-        <h1 style="color: white;"  >{{secret_text}}</h1>
+    <div class="module-view" >
+        <h1 style="color: white; cursor: default;" @mouseover="secret" @mouseleave="recover_secret" >{{secret_text}}</h1>
     </div>
 </template>
 
@@ -9,8 +9,7 @@
         name: "ModuleView",
         methods: {
             secret: function () {
-
-                this.secret_text = "      well  rag  s   ";
+                this.secret_text = "We don't always choose the right way";
             },
             recover_secret: function () {
                 this.secret_text = "Here dwell dragons...";

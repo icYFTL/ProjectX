@@ -10,7 +10,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-control">
-                        <input type="checkbox" id="save" v-model="save_checked"/>
+                        <input type="checkbox" v-model="save_checked"/>
                         Сохранить пароль?
                     </label>
                 </div>

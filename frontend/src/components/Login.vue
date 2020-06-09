@@ -9,10 +9,10 @@
         <div class="main">
             <div class="btn-group switcher" role="group">
                 <button type="button" @click="is_institute_auth = true" class="btn btn-default"
-                        v-bind:class="{'btn_switcher-active': is_institute_auth}">Institute
+                        v-bind:class="{'switcher_gradient': is_institute_auth}">Institute
                 </button>
                 <button type="button" @click="is_institute_auth = false" class="btn btn-default"
-                        v-bind:class="{'btn_switcher-active': !is_institute_auth}">Special
+                        v-bind:class="{'switcher_gradient': !is_institute_auth}">Special
                 </button>
             </div>
             <InstituteLogin v-if="is_institute_auth" :inst_options=inst_options :group_options=group_options
@@ -51,6 +51,31 @@
 
 </script>
 <style scoped>
+    .switcher_gradient {
+        background: linear-gradient(176deg, #030303, #ffffff);
+        background-size: 400% 400%;
+
+        -webkit-animation: black_to_white 10s ease infinite;
+        -moz-animation: black_to_white 10s ease infinite;
+        animation: black_to_white 10s ease infinite;
+    }
+
+    @-webkit-keyframes black_to_white {
+        0%{background-position:0% 50%}
+        50%{background-position:100% 50%}
+        100%{background-position:0% 50%}
+    }
+    @-moz-keyframes black_to_white {
+        0%{background-position:0% 50%}
+        50%{background-position:100% 50%}
+        100%{background-position:0% 50%}
+    }
+    @keyframes black_to_white {
+        0%{background-position:0% 50%}
+        50%{background-position:100% 50%}
+        100%{background-position:0% 50%}
+    }
+
     .switcher {
         margin-top: 40%;
         margin-bottom: 5%;
@@ -101,19 +126,6 @@
             margin-top: 0%;
         }
 
-    }
-
-    .slide-fade-enter-active {
-        transition: all .3s ease;
-    }
-
-    .slide-fade-leave-active {
-        transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-    }
-
-    .btn_switcher-active {
-        background-color: #d9fcd9;
-        transition: color 3s ease-in-out;
     }
 
 
