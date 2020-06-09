@@ -1,9 +1,10 @@
-language: minimal
+language: generic
 node_js:
   - node
 cache: npm
 before_script:
   - nvm install node
+  - gimme stable
 script:
   - cd frontend
   - npm install
