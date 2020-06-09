@@ -19,5 +19,11 @@ CREATE TABLE IF NOT EXISTS groups (
 );
 
 CREATE TABLE IF NOT EXISTS task (
-    ...
+    id serial PRIMARY KEY,
+    weight int NOT NULL,
+    complexity int NOT NULL,
+    text text NOT NULL,
+    language task_language NOT NULL,
+    created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
