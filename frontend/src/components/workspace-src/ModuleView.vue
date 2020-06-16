@@ -1,25 +1,17 @@
 <template>
-    <div class="module-view" >
-        <h1 style="color: white; cursor: default;" @mouseover="secret" @mouseleave="recover_secret" >{{secret_text}}</h1>
+    <div class="module-view">
+        <keep-alive>
+            <component v-bind:is="module"></component>
+        </keep-alive>
     </div>
 </template>
 
 <script>
     export default {
         name: "ModuleView",
-        methods: {
-            secret: function () {
-                this.secret_text = "We don't always choose the right way";
-            },
-            recover_secret: function () {
-                this.secret_text = "Here dwell dragons...";
-            }
+        props: {
+            module: Object
         },
-        data: function () {
-            return {
-                secret_text: "Here dwell dragons..."
-            }
-        }
     }
 </script>
 
@@ -29,9 +21,5 @@
         background-color: black;
         align-self: center;
         width: 100%;
-    }
-
-    .module-view h1 {
-
     }
 </style>

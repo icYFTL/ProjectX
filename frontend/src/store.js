@@ -1,15 +1,34 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import Home from "./components/modules/Home";
+//import menu from "./configs/menu.json"
 
 Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         status: '',
         token: localStorage.getItem('token') || '',
-        user: {}
+        user: {},
+        current_module: Home,
+        is_menu_opened: false,
+        menu_content: null
     },
     mutations: {
+        change_module(state, new_module) {
+            state.current_module = new_module;
+        },
+        change_active_module(state, module_name){
+            state.menu_content.forEach(function (item, i, arr) {
+                arr[i].is_active = item.title === module_name;
+            })
+        },
+        toggle_menu(state){
+            state.is_menu_opened = !state.is_menu_opened;
+        },
+        set_menu_items(state, items){
+          state.menu_content = items;
+        },
         auth_request(state) {
             state.status = 'loading'
         },

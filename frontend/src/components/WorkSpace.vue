@@ -1,8 +1,8 @@
 <template>
     <div class="workspace">
         <div class="content">
-            <Menu ref="menu" :menu_items_content=menu_items></Menu>
-            <ModuleView class="module-view"></ModuleView>
+            <Menu ref="menu"></Menu>
+            <ModuleView class="module-view" :module=current_module></ModuleView>
         </div>
     </div>
 </template>
@@ -10,17 +10,15 @@
 <script>
     import Menu from "./workspace-src/menu/Menu";
     import ModuleView from "./workspace-src/ModuleView";
+    import Home from "./modules/Home";
 
     export default {
         name: "WorkSpace",
         components: {ModuleView, Menu},
-        data() {
-            return {
-                menu_items: [
-                    {'title': 'Home', 'module': '#', 'is_active': true},
-                    {'title': 'Tasks', 'module': '#', 'is_active': false},
-                    {'title': 'Settings', 'module': '#', 'is_active': false}]
-            }
+        computed: {
+            current_module: function () {
+                return this.$store.state.current_module || Home;
+            },
         }
     }
 </script>

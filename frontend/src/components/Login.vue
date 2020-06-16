@@ -24,8 +24,8 @@
 
 <script>
 
-    import InstituteLogin from "@/components/login-methods/InstituteLogin";
-    import SpecialLogin from "@/components/login-methods/SpecialLogin";
+    import InstituteLogin from "@/components/login-src/InstituteLogin";
+    import SpecialLogin from "@/components/login-src/SpecialLogin";
 
     export default {
         name: "Login",
@@ -61,19 +61,19 @@
     }
 
     @-webkit-keyframes black_to_white {
-        0%{background-position:0% 50%}
+        0%{background-position:0 50%}
         50%{background-position:100% 50%}
-        100%{background-position:0% 50%}
+        100%{background-position:0 50%}
     }
     @-moz-keyframes black_to_white {
-        0%{background-position:0% 50%}
+        0%{background-position:0 50%}
         50%{background-position:100% 50%}
-        100%{background-position:0% 50%}
+        100%{background-position:0 50%}
     }
     @keyframes black_to_white {
-        0%{background-position:0% 50%}
+        0%{background-position:0 50%}
         50%{background-position:100% 50%}
-        100%{background-position:0% 50%}
+        100%{background-position:0 50%}
     }
 
     .switcher {
@@ -123,7 +123,7 @@
         }
 
         .main {
-            margin-top: 0%;
+            margin-top: 0;
         }
 
     }

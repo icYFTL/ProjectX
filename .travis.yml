@@ -4,12 +4,12 @@ node_js:
 cache: npm
 before_script:
   - nvm install node
-  - gimme --force 1.14.2
+# - gimme --force 1.14.2
 script:
   - cd frontend
   - npm install
   - npm run build
-  - cd ../backend
-  - go build -o ../frontend/dist/backend_compiled
-  - cd ../frontend
+#  - cd ../backend
+#  - go build -o ../frontend/dist/backend_compiled
+#  - cd ../frontend
   - npm run deploy

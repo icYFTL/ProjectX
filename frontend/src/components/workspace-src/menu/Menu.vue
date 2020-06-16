@@ -6,8 +6,8 @@
             </a>
         </div>
         <transition name="slide-fade">
-            <template v-if="is_hidden">
-                <MenuContent :items=menu_items_content></MenuContent>
+            <template v-if="this.$store.state.is_menu_opened">
+                <MenuContent :items=construct_menu()></MenuContent>
             </template>
         </transition>
     </div>
@@ -15,34 +15,57 @@
 
 <script>
     import MenuContent from "./MenuContent";
+    import Home from "../../modules/Home";
+    import Tasks from "../../modules/Tasks";
+    import Settings from "../../modules/Settings";
 
     export default {
         name: "Menu",
         components: {MenuContent},
-        props: {
-            menu_items_content: Array
-        },
-        data() {
-            return {
-                // menu_items_content: [{'title': 'Tasks', 'module': '#', 'is_active': false},
-                //     {'title': 'Settings', 'module': '#', 'is_active': false}],
-
-                is_hidden: false,
-            }
-        },
         methods: {
-
-            closeNavigation: function () {
-                this.is_hidden = true;
-            },
             trigger_click: function () {
-                this.is_hidden ? this.openNavigation() : this.closeNavigation();
+                this.$store.commit('toggle_menu')
             },
-            openNavigation: function () {
-                this.is_hidden = false;
-            }
 
-        }
+            construct_menu: function () {
+                console.warn(this.$store.state.menu_content)
+                if (this.$store.state.menu_content === null)
+                    this.$store.state.menu_content = [
+                        {
+                            "title": "Home",
+                            "module": Home,
+                            "is_active": true
+                        },
+                        {
+                            "title": "Tasks",
+                            "module": Tasks,
+                            "is_active": false
+                        },
+                        {
+                            "title": "Settings",
+                            "module": Settings,
+                            "is_active": false
+                        }
+                    ];
+
+                return this.$store.state.menu_content;
+                // this.menu_items_content.forEach(function (item, i, arr) {
+                //     try {
+                //         import("../../modules/" + item.title).then(result => {
+                //             arr[i].module = Vue.component(item.title,result);
+                //             console.warn(result)
+                //         });
+                //         console.log("imported " + item.title);
+                //     } catch (e) {
+                //         console.error(e);
+                //         arr[i].module = null;
+                //     }
+                // });
+                // return this.menu_items_content;
+                // TODO: Refactoring & Optimization
+            }
+        },
+
 
     }
 </script>

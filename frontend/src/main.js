@@ -7,6 +7,7 @@ import Vuex from 'vuex'
 import Axios from 'axios'
 import router from "./router";
 import Router from "vue-router";
+import store from "./store"
 
 Vue.use(Vuex)
 Vue.use(Axios)
@@ -20,9 +21,8 @@ const token = localStorage.getItem('token')
 if (token)
     Vue.prototype.$http.defaults.headers.common['Authorization'] = token
 
-
-
 new Vue({
     render: h => h(App),
-    router
+    router,
+    store
 }).$mount('#app')
