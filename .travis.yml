@@ -19,7 +19,7 @@ script:
   - cd frontend
   - npm install
   - npm run build
-  - ../backend/install.sh
+  - chmod +x ../backend/install.sh & bash ../backend/install.sh
   - npm run deploy
 notifications:
   email: false
