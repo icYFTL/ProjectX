@@ -3,7 +3,7 @@
         <div class="special-login-form">
             <form @submit.prevent="auth">
                 <div class="form-group">
-                    <input required type="text" class="form-control" placeholder="Login" v-model="login">
+                    <input required type="text" class="form-control" placeholder="Username" v-model="login">
                 </div>
                 <div class="form-group">
                     <input required type="password" class="form-control" placeholder="Password" v-model="password">
@@ -14,7 +14,7 @@
                         Сохранить пароль?
                     </label>
                 </div>
-                <button type="submit" v-on:click="auth" class="btn btn-black">Login</button>
+                <button type="submit" v-on:click="auth" class="btn btn-black">Submit</button>
             </form>
         </div>
     </div>

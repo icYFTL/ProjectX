@@ -3,7 +3,7 @@
         <div class="special-login-form">
             <form @submit.prevent="register">
                 <div class="form-group">
-                    <input required type="text" class="form-control" placeholder="Login" v-model="login">
+                    <input required type="text" class="form-control" placeholder="Username" v-model="login">
                 </div>
                 <div class="form-group">
                     <input required type="password" class="form-control" placeholder="Password" v-model="password">

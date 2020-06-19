@@ -34,7 +34,7 @@
                         Сохранить пароль?
                     </label>
                 </div>
-                <button title="Not implemented yet." type="submit" class="btn btn-black" disabled>Login</button>
+                <button title="Not implemented yet." type="submit" class="btn btn-black" disabled>Submit</button>
             </form>
         </div>
     </div>
