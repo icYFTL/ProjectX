@@ -13,7 +13,7 @@ let router = new Router({
             name: 'app',
             component: WorkSpace,
             meta: {
-                requiresAuth: false
+                requiresAuth: true
             }
         },
         {

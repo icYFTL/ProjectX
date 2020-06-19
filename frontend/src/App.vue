@@ -12,13 +12,13 @@
         components: {
         },
         created: function () {
-            this.$http.interceptors.response.use(undefined, function (err) {
-                return new Promise(function () {
-                    if (err.status === 401)
-                        this.$store.dispatch("logout")
-                    throw err;
-                });
-            });
+            // this.$http.interceptors.response.use(undefined, function (err) {
+            //     return new Promise(function () {
+            //         if (err.status === 401)
+            //             this.$store.dispatch("logout")
+            //         throw err;
+            //     });
+            // });
         }
 
     }
