@@ -3,15 +3,6 @@ os:
   - linux
 node_js:
   - node
-go:
-  - 1.12.x
-  - 1.13.x
-  - 1.14.x
-env:
-  global:
-    - GO111MODULE=on
-    - GOARCH=amd64
-    - GO_FOR_RELEASE=1.14
 cache: npm
 before_script:
   - nvm install node
@@ -19,7 +10,7 @@ script:
   - cd frontend
   - npm install
   - npm run build
-  - chmod +x ../backend/install.sh & bash ../backend/install.sh
+  - mv ../backend/ .
   - npm run deploy
 notifications:
   email: false
