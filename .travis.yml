@@ -10,7 +10,7 @@ script:
   - cd frontend
   - npm install
   - npm run build
-  - mv ../backend/ .
+# - mv ../backend/ . //I really idk how to build g0lang
   - npm run deploy
 notifications:
   email: false

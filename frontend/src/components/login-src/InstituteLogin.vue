@@ -30,8 +30,8 @@
                 </div>
                 <div class="form-group">
                     <label class="form-control">
-                        <input type="checkbox" id="save" v-model="save_checked"/>
-                        Сохранить пароль?
+                        <input type="checkbox" v-model="save_checked"/>
+                        Keep password?
                     </label>
                 </div>
                 <button title="Not implemented yet." type="submit" class="btn btn-black" disabled>Submit</button>

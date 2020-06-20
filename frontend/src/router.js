@@ -13,18 +13,23 @@ let router = new Router({
             name: 'app',
             component: WorkSpace,
             meta: {
-                requiresAuth: true
+                requiresAuth: true,
+                title: "PX | Workspace"
             }
         },
         {
             path: '/login',
             name: 'login',
-            component: Login
+            component: Login,
+            meta: {
+                title: "PX | Authentication"
+            }
         }
     ]
 })
 
 router.beforeEach((to, from, next) => {
+    document.title = to.meta.title
     if (to.matched.some(record => record.meta.requiresAuth))
         if(store.getters.isLoggedIn)
             next()

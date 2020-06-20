@@ -18,7 +18,6 @@
 <style scoped>
     .module-view {
         height: 100%;
-        background-color: black;
         align-self: center;
         width: 100%;
     }

@@ -11,7 +11,7 @@
                 <div class="form-group">
                     <label class="form-control">
                         <input type="checkbox" v-model="save_checked"/>
-                        Сохранить пароль?
+                        Keep password?
                     </label>
                 </div>
                 <button type="submit" v-on:click="auth" class="btn btn-black">Submit</button>

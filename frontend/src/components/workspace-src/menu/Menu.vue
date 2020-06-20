@@ -1,3 +1,4 @@
+<!-- TODO: Recreate menu. -->
 <template>
     <div class="content">
         <div class="nav__bar">
@@ -15,9 +16,11 @@
 
 <script>
     import MenuContent from "./MenuContent";
-    import Home from "../../modules/Home";
+
+    import Profile from "../../modules/Profile";
     import Tasks from "../../modules/Tasks";
     import Settings from "../../modules/Settings";
+    import Rating from "../../modules/Rating";
 
     export default {
         name: "Menu",
@@ -32,13 +35,18 @@
                 if (this.$store.state.menu_content === null)
                     this.$store.state.menu_content = [
                         {
-                            "title": "Home",
-                            "module": Home,
+                            "title": "Me",
+                            "module": Profile,
                             "is_active": true
                         },
                         {
                             "title": "Tasks",
                             "module": Tasks,
+                            "is_active": false
+                        },
+                        {
+                            "title": "Rating",
+                            "module": Rating,
                             "is_active": false
                         },
                         {

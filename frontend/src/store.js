@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
-import Home from "./components/modules/Home";
+import Home from "./components/modules/Profile";
 //import menu from "./configs/menu.json"
 
 Vue.use(Vuex)

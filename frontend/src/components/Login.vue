@@ -35,7 +35,6 @@
 
     export default {
         name: "Login",
-        // eslint-disable-next-line vue/no-unused-components
         components: {SignUpSpecial, SpecialLogin, InstituteLogin},
         data() {
             return {
